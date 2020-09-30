@@ -120,8 +120,10 @@ def existing_customer_homescreen(customer)
       def customer_accounts(customer)
         system 'clear'
         image
-        
+        puts ""
         puts "#{customer.name.capitalize}'s Accounts"
+        puts ""
+        customer.accounts
         puts ""
         puts "Please choose from the following options:"
         puts ""
@@ -132,7 +134,7 @@ def existing_customer_homescreen(customer)
         puts "5 - close account"
         puts "6 - log out"
         puts ""
-
+        #binding.pry
         user_input = gets.chomp
         if user_input == "1"
           system 'clear'
@@ -186,6 +188,7 @@ def existing_customer_homescreen(customer)
 
     def admin
       system 'clear'
+      x = Customer.find_by(name: "riley")
       binding.pry
       user_input = gets.chomp
     end

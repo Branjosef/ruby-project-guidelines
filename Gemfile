@@ -7,3 +7,4 @@ gem "pry"
 gem "require_all"
 gem "colorize"
 gem "require_relative"
+gem 'rake'

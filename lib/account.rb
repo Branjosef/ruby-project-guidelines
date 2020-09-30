@@ -14,6 +14,8 @@ class Account <  ActiveRecord::Base
     Account.create(bank_account: type, balance: balance.to_f, bank_id: bank_id.to_i , customer_id: customer_id.to_i)
   end
 
+  
+
 
 end
 
