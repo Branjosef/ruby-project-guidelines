@@ -28,6 +28,7 @@ GEM
     rack-protection (2.1.0)
       rack
     require_all (3.0.0)
+    require_relative (1.0.3)
     ruby2_keywords (0.0.2)
     sinatra (2.1.0)
       mustermann (~> 1.0)
@@ -51,6 +52,7 @@ DEPENDENCIES
   colorize
   pry
   require_all
+  require_relative
   sinatra-activerecord
   sqlite3
 
