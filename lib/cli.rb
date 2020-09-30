@@ -110,6 +110,7 @@ def existing_customer_homescreen(customer)
           puts "Please enter in a password"
           password = gets.chomp
           x = Customer.new_customer(name, email, password)
+
           puts "Welcome to MB Banking. Please press any key to continue"
           p x
           user = gets.chomp
@@ -134,53 +135,53 @@ def existing_customer_homescreen(customer)
         puts "5 - close account"
         puts "6 - log out"
         puts ""
-        #binding.pry
         user_input = gets.chomp
         if user_input == "1"
-          system 'clear'
-          image
-          puts ""
-          puts "please select type of account 1-checking, 2-savings)"
-           account_type = gets.chomp
-            if account_type == "1"
-                account_final = "checking"
-                puts "You have chosen to start a checking account"
-            elsif account_type == "2"
-                account_final = "saving"
-                puts "You have chosen to start a savings account"
-            else
-                "invalid input - please press any key to continue."
-                x = gets.chomp
-                customer_accounts(customer)
-            end
-            puts "how much do you wish to deposit?"
-              init_balance = gets.chomp
-              init_balance = init_balance.to_f
-            puts "Please choose your financial Institution"
-            puts "1 - Bank of America, 2 - Citibank, 3 - Washington Mutual"
-            account_bank = gets.chomp
-              if account_bank == "1"
-                account_bank_final = "bank of america"
-              elsif account_bank == "2"
-                account_bank_final = "citibank"
-              elsif account_bank == "3"
-                account_bank_final = "washington mutual"
-              else
-                puts "invalid selection - press any key to continue"
-                zzz = gets.chomp
-                customer_accounts(customer)
-              end
-              #binding.pry
-                cust_id = customer.find_id
-                bank_id = Bank.find_id(account_bank_final)
-                new_account = Account.new_account(account_final, init_balance, bank_id, cust_id)
-                p new_account
-                puts "account created successfully"
-                puts "press any key to continue"
-                zxz = gets.chomp
-                customer_accounts(customer)
-            end
+      system 'clear'
+      image
+      puts ""
+      puts "please select type of account 1-checking, 2-savings click 'c' to cancel)"
+        account_type = gets.chomp
+        if account_type == "1"
+            account_final = "checking"
+            puts "You have chosen to start a checking account"
+        elsif account_type == "2"
+            account_final = "saving"
+            puts "You have chosen to start a savings account"
+        else
+            "invalid input - please press any key to continue."
+            x = gets.chomp
+            customer_accounts(customer)
+        end
+      end
+        puts "how much do you wish to deposit?"
+          init_balance = gets.chomp
+          init_balance = init_balance.to_f
+        puts "Please choose your financial Institution"
+        puts "1 - Bank of America, 2 - Citibank, 3 - Washington Mutual"
+        account_bank = gets.chomp
+          if account_bank == "1"
+            account_bank_final = "bank of america"
+          elsif account_bank == "2"
+            account_bank_final = "citibank"
+          elsif account_bank == "3"
+            account_bank_final = "washington mutual"
+          else
+            puts "invalid selection - press any key to continue"
+            zzz = gets.chomp
+            customer_accounts(customer)
           end
+          #binding.pry
+            cust_id = customer.find_id
+            bank_id = Bank.find_id(account_bank_final)
+            new_account = Account.new_account(account_final, init_balance, bank_id, cust_id)
+            p new_account
+            puts "account created successfully"
+            puts "press any key to continue"
+            zxz = gets.chomp
+            customer_accounts(customer)
+        end
+
 
 
 
