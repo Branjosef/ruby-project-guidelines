@@ -8,3 +8,4 @@ gem "require_all"
 gem "colorize"
 gem "require_relative"
 gem 'rake'
+gem 'tty-prompt'

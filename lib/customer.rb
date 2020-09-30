@@ -8,6 +8,12 @@ def self.total_customers
   Customer.all.count
 end
 
+def delete_customer
+  x = self.find_id
+  Customer.delete(x)
+end
+
+
 
 def self.new_customer (name, email, password)
   Customer.create(name: name.downcase, email: email.downcase, password: password.downcase)
@@ -19,29 +25,20 @@ def find_id
 end
 
 def accounts
-  accounts_data = []
+  account_data = []
+  account_info = []
   Account.all.select do |a|
     if a.customer_id == self.id
-      accounts_data << a 
+      account_data << a
     end
   end
-  accounts_data
-  account_info = []
-  account_summary = []
-    accounts_data.each do |e|
-     x = Bank.find(e.bank_id)
-       account_info << x.name
-       account_info << x.location
-       account_info << e.bank_account
-       account_info << e.balance
+   account_data
+    account_data.each do |e|
+      x = Bank.find(e.bank_id)
+         account_info <<  "id:#{e.id}, Financial Institution: #{x.name.upcase},  Location: #{x.location.upcase}, Account: #{e.bank_account.upcase}, Balance: $#{e.balance}"
     end
-    p account_info
-    # accounts_final = []
-    # account_info.each do |e|
-    # accounts_final << "Financial Instution: #{e[0]}, location: #{e[1]}, Balanace: $#{e[2]}"
-    # end
-    # accounts_final.each {|e| p e}
+    account_info   
+    account_info.each {|e| p e}
   end
-
 
 end
