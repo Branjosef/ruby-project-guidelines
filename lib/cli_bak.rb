@@ -83,7 +83,7 @@ def existing_customer_homescreen(customer)
       puts "Welcome back #{customer.name.capitalize}!" 
       puts "How may we assist you today?"
       puts ""
-      puts "1 - Accounts"
+      puts "1 - Accounts, 2 -"
       puts "2 - View your MB Banking 'Premier' profile"
       puts "3 - Logout"
       #binding.pry

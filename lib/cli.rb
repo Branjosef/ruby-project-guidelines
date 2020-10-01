@@ -2,7 +2,7 @@ class Cli
   require 'tty-prompt'
 
   def image
-    puts <<-LOGO   
+    puts <<-LOGO  
                                                                                             
     ███╗   ███╗██████╗     ██████╗  █████╗ ███╗   ██╗██╗  ██╗██╗███╗   ██╗ ██████╗ 
     ████╗ ████║██╔══██╗    ██╔══██╗██╔══██╗████╗  ██║██║ ██╔╝██║████╗  ██║██╔════╝ 
@@ -60,7 +60,7 @@ class Cli
     prompt = TTY::Prompt.new
     system 'clear'
     image
-    puts "Welcome back #{customer.name.capitalize}!"
+    puts "Welcome back #{customer.name.capitalize}!".yellow
     action = prompt.select("How may we assist you today our most valuable customer?", %w(Accounts View_Your_MB_Banking_Premier_Profile Logout))
     case action
     when "Accounts"
@@ -68,7 +68,7 @@ class Cli
     when "View_Your_MB_Banking_Premier_Profile"
       mb_account(customer)
     when "Logout"
-      return "Logout Complete."
+      home
     end
   end
 
@@ -90,11 +90,35 @@ class Cli
     when "Back_To_Homepage"
       existing_customer_homescreen(customer)
     when "Close_Account"
-      puts "need close method"
+      close(customer)
     when "Logout"
       return "logged out"
     end
   end
+
+  def close(customer)
+    prompt = TTY::Prompt.new
+    system 'clear'
+    image
+    puts ""
+    puts "#{customer.name.capitalize}'s Accounts"
+    puts ""
+    customer.accounts
+    action = prompt.select("Please select action:", %w(Select_Account_to_close Return_to_accounts))
+    case action
+    when "Select_Account_to_close"
+      account_id = prompt.ask("Please enter account id for account you wish to close:")
+      account_id = account_id.to_i
+      Account.delete(account_id)
+      puts "Your account has been closed. Please allow 5-7 business days for funds to be sent to the customer address on file."
+      puts "Please press any key to be redirected back to your accounts overview "
+      z= gets.chomp
+      customer_accounts(customer)
+    when "Return_to_accounts"
+      customer_accounts(customer)
+    end
+  end
+
 
   def transact(customer)
     prompt = TTY::Prompt.new
@@ -235,13 +259,11 @@ class Cli
     end
 end
 
-
   def admin 
     system 'clear'
     x = Customer.find_by(name: "riley")
     binding.pry
     user_input = gets.chomp
   end
-
 
 end

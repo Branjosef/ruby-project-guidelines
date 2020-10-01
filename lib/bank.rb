@@ -17,8 +17,6 @@ def self.find_id(name)
   p x.id
 end
 
-
-
 def self.create_new(name, location)
   self.create(name: name.downcase, location: location.downcase)
 end
