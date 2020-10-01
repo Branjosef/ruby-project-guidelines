@@ -39,4 +39,10 @@ def accounts
     account_info.each {|e| p e}
   end
 
+  def single_transaction(account_id)
+      account = Account.find_by(id: account_id)
+      x = Bank.find(account.bank_id)
+      p "id: #{account.id}, Financial Instituion: #{x.name.upcase}, Account: #{account.bank_account}, Balance: $#{account.balance}"
+  end
+
 end

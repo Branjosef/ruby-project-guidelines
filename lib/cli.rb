@@ -1,8 +1,81 @@
 class Cli
   require 'tty-prompt'
 
+  
+  def logo 
+    puts "
+    
+    ███    ███       ██████      
+    ████  ████       ██   ██     
+    ██ ████ ██ █████ ██████      
+    ██  ██  ██       ██   ██     
+    ██      ██       ██████      
+                                
+    
+    ".light_green
+    sleep (2.00)
+    #system 'clear'
+    
+  end
+
+  def logo1
+    puts "
+    ██████   █████  ███    ██ ██   ██ ██ ███    ██  ██████  
+    ██   ██ ██   ██ ████   ██ ██  ██  ██ ████   ██ ██       
+    ██████  ███████ ██ ██  ██ █████   ██ ██ ██  ██ ██   ███ 
+    ██   ██ ██   ██ ██  ██ ██ ██  ██  ██ ██  ██ ██ ██    ██ 
+    ██████  ██   ██ ██   ████ ██   ██ ██ ██   ████  ██████  
+
+    ".light_green
+    sleep (2.00)
+    #system 'clear'
+  end
+
+  def logo2
+    puts "
+
+    ███    ███       ██████            
+    ████  ████       ██   ██     
+    ██ ████ ██ █████ ██████      
+    ██  ██  ██       ██   ██     
+    ██      ██       ██████
+
+    
+    ██████   █████  ███    ██ ██   ██ ██ ███    ██  ██████  
+    ██   ██ ██   ██ ████   ██ ██  ██  ██ ████   ██ ██       
+    ██████  ███████ ██ ██  ██ █████   ██ ██ ██  ██ ██   ███ 
+    ██   ██ ██   ██ ██  ██ ██ ██  ██  ██ ██  ██ ██ ██    ██ 
+    ██████  ██   ██ ██   ████ ██   ██ ██ ██   ████  ██████  
+
+    ".light_green
+    sleep (3.00)
+    #system 'clear'
+
+  end 
+
+  def go
+    system 'clear'
+      p logo
+      p logo1
+      p logo2
+  end
+  
+  def image1
+    puts"   
+    ███    ███ ██████      ██████   █████  ███    ██ ██   ██ ██ ███    ██  ██████  
+    ████  ████ ██   ██     ██   ██ ██   ██ ████   ██ ██  ██  ██ ████   ██ ██       
+    ██ ████ ██ ██████      ██████  ███████ ██ ██  ██ █████   ██ ██ ██  ██ ██   ███ 
+    ██  ██  ██ ██   ██     ██   ██ ██   ██ ██  ██ ██ ██  ██  ██ ██  ██ ██ ██    ██ 
+    ██      ██ ██████      ██████  ██   ██ ██   ████ ██   ██ ██ ██   ████  ██████  
+    ".light_green
+    puts ""
+    puts ""
+  end
+
+
+
   def image
-    puts <<-LOGO  
+    puts"   
                                                                                             
     ███╗   ███╗██████╗     ██████╗  █████╗ ███╗   ██╗██╗  ██╗██╗███╗   ██╗ ██████╗ 
     ████╗ ████║██╔══██╗    ██╔══██╗██╔══██╗████╗  ██║██║ ██╔╝██║████╗  ██║██╔════╝ 
@@ -10,17 +83,18 @@ class Cli
     ██║╚██╔╝██║██╔══██╗    ██╔══██╗██╔══██║██║╚██╗██║██╔═██╗ ██║██║╚██╗██║██║   ██║
     ██║ ╚═╝ ██║██████╔╝    ██████╔╝██║  ██║██║ ╚████║██║  ██╗██║██║ ╚████║╚██████╔╝
     ╚═╝     ╚═╝╚═════╝     ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝ ╚═════╝ 
-    LOGO
+    ".light_green
     puts ""
     puts ""
   end
 
   def home   #DONE
     prompt = TTY::Prompt.new
+    prompt1 = TTY::Prompt.new
     system 'clear'
     image
-    puts "Welcome to MB Banking Solutions"
-    puts"'Banking solutions you can bank on!'"
+    puts "Welcome to MB Banking Solutions".light_yellow
+    puts"'Banking solutions you can 'MB' bank on!'".light_yellow
     puts ""
     action = prompt.select("Please select from the following?", %w(Existing_Customer New_Customer Admin))
     case action
@@ -29,7 +103,8 @@ class Cli
       when "New_Customer"
         new_customer
       when "Admin"
-        admin
+        pass = prompt1.mask("Enter password") 
+        admin if pass == "password"
       end
     end
       
@@ -39,8 +114,8 @@ class Cli
     prompt2 = TTY::Prompt.new
     system 'clear'
     image
-    puts "Welcome to MB Banking - Customer Login Portal"
-    puts "'It's never too late to refi. Just ask us how!'"
+    puts "Welcome to MB Banking - Customer Login Portal".light_yellow
+    puts "'It's never too late to refi. Just ask us how!'".light_yellow
     puts ""
     name = prompt1.ask("Please enter your name:")
     password = prompt2.mask("Please enter your password:")
@@ -60,7 +135,7 @@ class Cli
     prompt = TTY::Prompt.new
     system 'clear'
     image
-    puts "Welcome back #{customer.name.capitalize}!".yellow
+    puts "Welcome back #{customer.name.capitalize}!".light_yellow
     action = prompt.select("How may we assist you today our most valuable customer?", %w(Accounts View_Your_MB_Banking_Premier_Profile Logout))
     case action
     when "Accounts"
@@ -78,9 +153,10 @@ class Cli
     system 'clear'
     image
     puts ""
-    puts "#{customer.name.capitalize}'s Accounts"
+    puts "#{customer.name.capitalize}'s Accounts".light_yellow
     puts ""
     customer.accounts
+    puts ""
     action = prompt.select("Please choose from the following options:", %w(Create_Account Transactions Back_To_Homepage Close_Account Logout))
     case action
     when "Create_Account"
@@ -92,7 +168,7 @@ class Cli
     when "Close_Account"
       close(customer)
     when "Logout"
-      return "logged out"
+      home
     end
   end
 
@@ -101,7 +177,7 @@ class Cli
     system 'clear'
     image
     puts ""
-    puts "#{customer.name.capitalize}'s Accounts"
+    puts "#{customer.name.capitalize}'s Accounts".light_yellow
     puts ""
     customer.accounts
     action = prompt.select("Please select action:", %w(Select_Account_to_close Return_to_accounts))
@@ -110,7 +186,9 @@ class Cli
       account_id = prompt.ask("Please enter account id for account you wish to close:")
       account_id = account_id.to_i
       Account.delete(account_id)
+      puts ""
       puts "Your account has been closed. Please allow 5-7 business days for funds to be sent to the customer address on file."
+      puts ""
       puts "Please press any key to be redirected back to your accounts overview "
       z= gets.chomp
       customer_accounts(customer)
@@ -127,7 +205,7 @@ class Cli
     system 'clear'
     image
     puts ""
-    puts "#{customer.name.capitalize}'s Accounts"
+    puts "#{customer.name.capitalize}'s Accounts".light_yellow
     puts ""
     customer.accounts
     action = prompt.select("Please select transaction type:", %w(Deposit Withdrawal Return_to_Homepage))
@@ -139,6 +217,11 @@ class Cli
       deposit = deposit.to_i
       account = Account.find_by(id: account_id)
       account.update(balance: (account.balance + deposit))
+      puts " "
+      puts "Deposit successful! Please any key to continue..."
+      puts ""
+      customer.single_transaction(account_id)
+      z = gets.chomp
       transact(customer)
     when "Withdrawal"
       account_id = prompt.ask("Please enter account id:")
@@ -147,6 +230,11 @@ class Cli
       withdrawal = withdrawal.to_i
       account = Account.find_by(id: account_id)
       account.update(balance: (account.balance - withdrawal)) if account.balance > withdrawal
+      puts " "
+      puts "Withdrawal successful! Please any key to continue..."
+      puts ""
+      customer.single_transaction(account_id)
+      z = gets.chomp
       transact(customer)
     when "Return_to_Homepage"
       customer_accounts(customer)
@@ -160,8 +248,11 @@ class Cli
     system 'clear'
     image
     puts ""
-    account = prompt1.select("What type of account do you want to open?", %w(Checking Savings))
-    deposit = prompt2.ask("Deposit Amount?")
+    account = prompt1.select("What type of account do you want to open?", %w(Checking Savings Return_to_Accounts))
+    case account
+    when "Checking"
+        account = "Checking"
+        deposit = prompt2.ask("Deposit Amount?")
     bank = prompt3.select("Please select your financial institution:", %w(Bank_of_America Capital_One Citibank Washington_Mutual Wells_Fargo ))
     deposit = deposit.to_f
     bank1 = bank.split("_")
@@ -176,6 +267,26 @@ class Cli
     puts "press any key to return to your Accounts"
     zxz = gets.chomp
     customer_accounts(customer)
+    when "Savings"
+      account = "Savings"
+      deposit = prompt2.ask("Deposit Amount?")
+    bank = prompt3.select("Please select your financial institution:", %w(Bank_of_America Capital_One Citibank Washington_Mutual Wells_Fargo ))
+    deposit = deposit.to_f
+    bank1 = bank.split("_")
+    bank1.map
+    bank = bank1.join(' ')
+    cust_id = customer.find_id
+    bank_id = Bank.find_id(bank.downcase)
+    account1 = account.downcase
+    new_account = Account.new_account(account1, deposit, bank_id, cust_id)
+    p new_account
+    puts "account created successfully"
+    puts "press any key to return to your accounts"
+    zxz = gets.chomp
+    customer_accounts(customer)
+    when "Return_to_Accounts"
+      customer_accounts(customer)
+    end  
   end
 
   def mb_account(customer) #DONE
@@ -183,7 +294,7 @@ class Cli
     system 'clear'
     image
     puts ""
-    puts "Welcome to your Premier Account Profile. You are our most valuable customer"
+    puts "Welcome to your Premier Account Profile. You are our most valuable customer".light_yellow
     puts ""
     p Customer.find(customer.id)
     puts ""
@@ -222,7 +333,7 @@ class Cli
     system 'clear'
     image
     puts ""
-    puts "You are our most valued customer and we would hate to see you go"
+    puts "You are our most valued customer and we would hate to see you go".light_yellow
     puts ""
     action = prompt.select("Please confirm request to close MB 'Premier' account:", %w(yes no))
     case action 
@@ -241,7 +352,7 @@ class Cli
  def new_customer #DONE
   system 'clear'
   image
-  puts "Welcome to MB Banking - New Customer Portal"
+  puts "Welcome to MB Banking - New Customer Portal".light_yellow
   puts "Please enter in your name (click 'c' to cancel)"
   name = gets.chomp
     if name.downcase == "c"

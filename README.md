@@ -2,9 +2,9 @@
 # Name: MB BANKING   CLI APP
 
 # Description: 
-* MB Banking is full banking solution for managing bank accounts by allowing MB users to create and review new banking information,  make deposits and withdrawals, and close bank accounts with their respective banking institution on file. The command line interface was designed to be intuitive using 'natural language' prompts to faciliate navigation through all aspect of the program.
+* MB Banking is a full banking solution for managing bank accounts by allowing MB users to create and review new banking information,  make deposits and withdrawals, and close bank accounts with their respective banking institutions on file. The command line interface was designed to be intuitive using 'natural language' prompts to faciliate navigation through all aspect of the program.
 
-* The application is pre-seeded with a list of Banks MB Banking has contracts with to provide third-party financial account management and solution.
+* The application is pre-seeded with a list of Banks MB Banking has contracts with to provide third-party financial account management and solutions.
 
 * This app was developed as Flatiron School’s mod1 group project to demonstrate the knowledge of Active Record Associations, as well as CRUD methods, Ruby OOP, and SQL database management.
 
@@ -15,10 +15,9 @@
 BANK --< ACCOUNT >-- CUSTOMER
 
 
-
 ##  User Stories:
-* Bank can have many Accounts
-* Bank can have many Customers through Accounts 
+* Banks can have many Accounts
+* Banks can have many Customers through Accounts 
 * Customers can have many Banks through Accounts
 * Customers can have many Accounts
 * Account belongs to one Bank
